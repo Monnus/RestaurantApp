@@ -15,6 +15,9 @@ export default function Headeer() {
    </View>
    <View style={styles.tabs}>
 
+<Text style={{   fontWeight:500, fontSize:"20px"}}>History</Text>
+<Text style={{   fontWeight:500, fontSize:"20px"}}>All Restaurants</Text>
+<Text style={{  fontWeight:500,  fontSize:"20px"}}>Types</Text>
 
    </View>
      </View>
@@ -43,6 +46,10 @@ backgroundColor:"#F5F5F5",
 },
 tabs:{
     flex:2,
+    flexDirection:"row",
+    width:"100%",
+    justifyContent:"space-between",
+    alignItems:"flex-end",
     backgroundColor:"#C2BEB3",
 },
 searchbar:{
