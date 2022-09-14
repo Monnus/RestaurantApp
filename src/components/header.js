@@ -1,17 +1,22 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { View, Text, StyleSheet,TextInput } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import Menu from './manu/menue';
+
 export default function Headeer() {
+const [loadMenu,getMenu]=useState(false);
   return (
     <View style={styles.headerContainer}>
+      
+      {loadMenu?<Menu/>:""}
         <View style={styles.search}>
  <TextInput style={styles.searchbar} placeholder="search restaurants"/>
  <FontAwesome name="search" size={47} color="black"  style={{backgroundColor:"rgb(255,255,255)",height:"100%",
  borderTopStartRadius:"20px", borderBottomStartRadius:"30px",alignSelf:"center",marginLeft:"30px"}}/>
         </View>
    <View style={styles.navsection}>
-   <Ionicons name="menu" size={54} color="black" />
+   <Ionicons name="menu" size={54} color="black"  onPress={getMenu(state=>!state)}/>
    </View>
    <View style={styles.tabs}>
 
