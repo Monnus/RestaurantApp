@@ -1,22 +1,26 @@
 import React,{useState} from 'react';
-import { View, Text, StyleSheet,TextInput } from 'react-native';
+import { View, Text, StyleSheet,TextInput ,TouchableOpacity} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import "../components/slider/Slider";
 import Menu from './manu/menue';
-
-export default function Headeer() {
-const [loadMenu,getMenu]=useState(false);
+export default function Header() {
+const [showMenu,setShowMenu]=useState(false);
+console.log(showMenu);
   return (
     <View style={styles.headerContainer}>
-      
-      {loadMenu?<Menu/>:""}
+ 
+{showMenu?<Menu/>:<></>}    
         <View style={styles.search}>
  <TextInput style={styles.searchbar} placeholder="search restaurants"/>
  <FontAwesome name="search" size={47} color="black"  style={{backgroundColor:"rgb(255,255,255)",height:"100%",
  borderTopStartRadius:"20px", borderBottomStartRadius:"30px",alignSelf:"center",marginLeft:"30px"}}/>
         </View>
    <View style={styles.navsection}>
-   <Ionicons name="menu" size={54} color="black"  onPress={getMenu(state=>!state)}/>
+    
+      <TouchableOpacity style={{ height:"30px",width:"10px"}} onPress={()=>setShowMenu(!showMenu)}>
+      <Ionicons name="menu" size={54} color="black"  />
+        </TouchableOpacity>
    </View>
    <View style={styles.tabs}>
 

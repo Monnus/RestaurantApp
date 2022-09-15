@@ -1,22 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Button } from '@rneui/themed';
+import { View, Text ,StyleSheet} from 'react-native';
+import {Button} from "react-native-paper"
 
 const ProfileBtn=({name})=>{
     return ( 
-    <Button title="Profile" containerStyle={{
-        width:200,
-        marginHorizontal: 50,
-        marginVertical: 10,
-        marginBottom:6}}
-        buttonStyle={{
-            backgroundColor:"rgba(45, 62, 72,0.8)",
-            borderRadius: 3,
-        }}>{name}</Button>
+    <Button color="#2D3E48" style={{marginBottom:"20px",width:"90%"}}mode="contained">{name}</Button>
   );
 }
 const styles = StyleSheet.create({
-    
+    btn:{
+        
+    }
 })
 export default ProfileBtn;
 
