@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 
 import { View, StyleSheet, Text, SafeAreaView , TextInput} from 'react-native';
 import { Button } from 'react-native-paper';
+import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword} from "firebase/auth";
+import app from '../../firebaseConfig';
 
 const RegisterAndLogin=()=> {
-    
+    const [refOrLog,setRefORLog]=useState(1)
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("");
+    const auth=getAuth(app)
     const registerScreen=()=>{
         return( 
  
@@ -20,6 +23,18 @@ const RegisterAndLogin=()=> {
         )
     }
 
+    const handleSubmit=(refOrLog)=>{
+if(refOrLog==1){
+createUserWithEmailAndPassword(auth,email,password).then((res=>{
+    console.log(res,"account created seccssfully");
+})).catch((err)=>console.log(err))
+}else if(refOrLog==2){
+    signInWithEmailAndPassword(auth,email,password).then((res)=>{
+    console.log(res,"sign in with email");
+    const userObj=new Object.assign(res)
+    }).catch((err)=>console.log(err);)
+}
+    };
             return (
             <SafeAreaView style={styles.container}>
        {registerScreen()}
