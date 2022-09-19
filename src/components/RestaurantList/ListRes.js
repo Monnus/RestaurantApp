@@ -1,7 +1,8 @@
+import { nanoid } from 'nanoid';
 import React from 'react';
 import { View, Text,StyleSheet,Image } from 'react-native';
 
-export default function ListRes({data=[{img:require("../../Image/icon.png"),title:"burger Dish",description:`ullamco laboris nisi ut aliquip ex 
+export default function ListRes({data=[{img:require("../../Image/icon.png"),id:nanoid(),title:"burger Dish",description:`ullamco laboris nisi ut aliquip ex 
 ea commodo consequat. 
 Duis aute irure dolor in reprehenderit in voluptate velit 
 esse cillum dolore eu fugiat nulla pariatur`}]}) {
@@ -10,15 +11,15 @@ esse cillum dolore eu fugiat nulla pariatur`}]}) {
 <Text style={styles.heading}>Restaurants near you:</Text>
     {data.map(data=>{
         return(
-            <>
-            <View style={styles.boxRes}>
+         
+            <View style={styles.boxRes} key={data.id}>
                 <Image source={{uri:data.img}} style={{height:"100%",width:"200px"}}/>
                 <View style={{display:"flex"}}>
                 <Text style={{width:"auto",height:"auto" ,color:"white"}}>{data.title}</Text>
                     <Text style={{width:"auto",height:"auto" ,color:"white"}}>{data.description}</Text>
                 </View>
             </View>
-            </>
+
         )
     })}
     </View>

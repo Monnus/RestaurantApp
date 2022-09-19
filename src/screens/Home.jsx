@@ -4,10 +4,10 @@ import Header from '../components/header';
 import ListRes from '../components/RestaurantList/ListRes';
 import SliderImage from '../components/slider/Slider';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation }) {
   return (
     <SafeAreaView>
-   <Header /> 
+   <Header navigation={navigation } /> 
    <SliderImage/>
    <ListRes/>
      </SafeAreaView>

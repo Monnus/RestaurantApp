@@ -25,9 +25,9 @@ return (
       pagingEnabled
       horizontal={true}
       style={styles.wrap}>
-   <Image source={{uri:"https://cdn.pixabay.com/photo/2014/04/22/02/56/pizza-329523__340.jpg "}} style={{position:"relative",top:"0",height:"100%", width:"height"}} resizeMode="center"/>
+   <Image source={{uri:"https://cdn.pixabay.com/photo/2014/04/22/02/56/pizza-329523__340.jpg "}} style={{position:"relative",top:"0",height:"100%", width:"height"}} resizeMode="centerjk"/>
       </ScrollView>
-      <View style={styles.wrapDot}>
+      <View style={styles.wrapDot}> 
             {Imgs.map((e,index)=>
             <Text key={e} style={imgActive==index ? styles.dotActive:styles.dot}>
               ●
@@ -49,7 +49,7 @@ const styles=StyleSheet.create({
   flex:1,
 },
 wrap:{
-   backgroundColor:"lightblue",
+
 WIDTH,
 height:HEIGHT*0.25,
  },
