@@ -11,17 +11,19 @@ export default function Profile() {
     return (
         <SafeAreaView style={{flex:1,justifyContent:"center"}}>
         <Headerv2 showMenu={showMenu} setShowMenu={setShowMenu}/>
-            <View style={styles.container}>
-<Text>Prefered Name: 
- <TextInput placeholder='User' style={{height:30, borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px"}}/>           
 
-</Text>
+        <View style={{height:"500px",backgroundColor:"lightgray"}}>
+        <Text style={styles.textInput}>Prefered Name: 
+        <TextInput placeholder='User'
+        style={{height:30, borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px"}}/>           
+        </Text>
        
-<Text>Prefered Name: 
- <TextInput placeholder='User' style={{height:30, borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px"}}/>           
-
-</Text>
-            </View>
+        <Text style={styles.textInput} >Prefered Name: 
+        <TextInput placeholder='User' 
+        style={{height:30, borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px"}}/>           
+        </Text>
+ </View>
+          
  {showMenu?<Menu setShowMenu={setShowMenu} showMenu={showMenu} navigation={navigation }/>:<></>}  
     
 <Button mode="contained" color="#2D3E48" style={{marginLeft:"60px",marginBottom:"30px",width:"200px",height:"40px"}}>
@@ -45,5 +47,9 @@ const styles=StyleSheet.create({
     img:{
         height:100,
         width:100,
+    },
+    textInput:{
+        fontSize:"15px",
+        fontWeight:"large",
     }
 })
