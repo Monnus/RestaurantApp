@@ -3,14 +3,13 @@ import { View, Text, StyleSheet,TextInput ,TouchableOpacity} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import "../components/slider/Slider";
-import Menu from './manu/menue';
-export default function Header({navigation}) {
-const [showMenu,setShowMenu]=useState(false);
-console.log(showMenu);
-  return (
+
+
+export default function Header({navigation,setShowMenu,showMenu}) {
+
+return (
     <View style={styles.headerContainer}>
  
-{showMenu?<Menu setShowMenu={setShowMenu} showMenu={showMenu} navigation={navigation }/>:<></>}    
         <View style={styles.search}>
  <TextInput style={styles.searchbar} placeholder="search restaurants"/>
  <FontAwesome name="search" size={47} color="black"  style={{backgroundColor:"rgb(255,255,255)",height:"100%",

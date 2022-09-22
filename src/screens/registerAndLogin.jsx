@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 
 import { View, StyleSheet, Text, SafeAreaView , TextInput} from 'react-native';
 import { Button } from 'react-native-paper';
-import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword} from "firebase/auth";
+import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword, onAuthStateChanged,User} from "firebase/auth";
 import app from '../../firebaseConfig';
 
 
 // ====================== uid "BEaSox2mhiY1tFj7GLAiJspS9bi1"============================
 
-const RegisterAndLogin=()=> {
+
+const RegisterAndLogin=({navigation})=> {
     const [refOrLog,setRefORLog]=useState(1)
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("");
     const auth=getAuth(app)
+
+  
+
+
 // ============================handle Submit===========================
     const handleSubmit=(refOrLog)=>{
         console.log(refOrLog,"hello",email,password);
@@ -25,9 +30,8 @@ const RegisterAndLogin=()=> {
     })).catch((err)=>console.log(err.message))
     }else if(refOrLog==2){
     signInWithEmailAndPassword(auth,email,password).then((res)=>{
-    console.log(res,"sign in with email");
-    const userObj= Object.assign(res);
-    console.log(userObj);
+    console.log("sign in with email");
+        navigation.navigate("Home");
     }).catch((err)=>console.log(err.message));
     }
     };
@@ -94,6 +98,7 @@ const styles = StyleSheet.create({
         color:"gray"
     }
     
-})
+});
+
 
 export default RegisterAndLogin

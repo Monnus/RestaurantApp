@@ -15,7 +15,7 @@ const ProfileBtn=({name,navigation})=>{
 
     return ( 
 
-    <Button color="#2D3E48" style={{marginBottom:"20px",width:"90%"}} onPress={()=>console.log(name)}>{name}</Button>
+    <Button color="#2D3E48" style={{marginBottom:"20px"}} mode="contained" onPress={()=>handleNavigate()}>{name}</Button>
     );
 };
 
