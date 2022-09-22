@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet,Dimensions,SafeAreaView,Image,TouchableOpacity} from 'react-native';
 import ProfileBtn from '../profileBtn/Btn';
 import { Ionicons } from '@expo/vector-icons';
+import Elevations from 'react-native-elevation';
 
 export default function Menu({setShowMenu,showMenu,navigation}) {
   // console.log(navigation.navigate("Profile"));
@@ -37,7 +38,9 @@ const styles=StyleSheet.create(
             paddingTop:"40px 0",
             height,
             backgroundColor:"rgba(217, 217, 217,0.9)",
-            zIndex:3,
+            zIndex:10,
+        overflow:"visible",
+        ...Elevations[4]
 
         },
         img:{
