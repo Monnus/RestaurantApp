@@ -61,12 +61,12 @@ const pickImage = async () => {
             const docRef= updateDoc(docRe2,{
             signInEmail:user.email,
             uid:user.uid,
-            displayName:user.displayName,
+            displayName:preferedName,
             mobileNumber:addNumber,
             ExtNumber:otherEmail,
-            profileImage:user.photoURL,
+            profileImage:image,
             })
-            const querySnapshot = getDocs(collection(db, "users"));
+            const querySnapshot = await getDocs(collection(db, "users"));
         querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${doc.data()}`);
         });
