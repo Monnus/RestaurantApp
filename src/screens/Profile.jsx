@@ -1,16 +1,17 @@
 import React,{useState,useEffect}from 'react';
 import { View, Text , StyleSheet,Image,TextInput ,Platform,SafeAreaView} from 'react-native';
-import{getFirestore,collection,addDoc,getDocs,doc, updateDoc} from "firebase/firestore";
-import {getAuth, onAuthStateChanged,updateProfile} from "firebase/auth";
+import{getFirestore,collection,addDoc,getDocs,doc, updateDoc, where, query} from "firebase/firestore";
+import {getAuth, onAuthStateChanged,updateProfile,signOut} from "firebase/auth";
 import * as ImagePicker from "expo-image-picker";
 import app from '../../firebaseConfig';
 import Headerv2 from '../components/headerv2/Headerv2';
 import Menu from '../components/manu/menue';
 import { Button } from 'react-native-paper';
-import { async } from '@firebase/util';
-import Elevations from 'react-native-elevation';
 
-export default function Profile() {
+import Elevations from 'react-native-elevation';
+import { async } from '@firebase/util';
+
+export default function Profile({navigation}) {
 const defaultImage=require("../Image/emptyIcon.png");    
     const [image,setImage]=useState(null)
     const [userId,setUserID]=useState("")
@@ -22,7 +23,8 @@ const defaultImage=require("../Image/emptyIcon.png");
 
 
     const db= getFirestore(app);
-  
+    const user=auth.currentUser;
+console.log(user);
 useEffect(()=>{
      onAuthStateChanged(auth,(user)=>{
         if(user){
@@ -30,10 +32,22 @@ useEffect(()=>{
      
         }else{
             console.log("no user found");
+     
+            navigation.navigate("signIn")
         }
      })
 },[]);
-
+//get user profile image
+// (async function(){
+//   console.log(user.uid);
+//     const q =query(collection(db,"users"), where("uid","==",user.uid))
+//     const querySnapshot=await getDocs(q);
+//     querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshots
+//         console.log(doc.id, " => ", doc.data());
+//       });
+  
+// })()
 const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -49,12 +63,12 @@ const pickImage = async () => {
       setImage(result.uri);
     }
   };
-  const user=auth.currentUser;
 
+///update user profile function
     const handleUpdate=async(preferedName,addNumber,otherEmail)=>{
         try {
+  const user=auth.currentUser;
             const docRe2=doc(db,"users","0VIqBWynmNHZXeq0Exr9")
-            const user=auth.currentUser;
             updateProfile(auth.currentUser,{
                 displayName:preferedName,photoURL:image
             })
@@ -76,12 +90,11 @@ const pickImage = async () => {
             console.error(error)
         }
     }
-  
 
     return (
         <SafeAreaView style={{flex:1,justifyContent:"center"}}>
-        <Headerv2 showMenu={showMenu} setShowMenu={setShowMenu}/>
-            <View style={styles.container} >
+        <Headerv2 showMenu={showMenu} setShowMenu={setShowMenu} navigation={navigation}/>
+            <View style={styles.container}>
                 {image?
             <Image source={{uri:image}} style={{width:"150px",height:"100px",marginBottom:"5px",...Elevations[4]}}/>
             : <Image source={{uri:require("../Image/emptyIcon.png")}} style={{width:"150px",height:"100px",marginBottom:"5px",...Elevations[4]}}/>
