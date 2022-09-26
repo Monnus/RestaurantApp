@@ -7,12 +7,12 @@ import app from '../../firebaseConfig';
 import Headerv2 from '../components/headerv2/Headerv2';
 import Menu from '../components/manu/menue';
 import { Button } from 'react-native-paper';
-
 import Elevations from 'react-native-elevation';
-import { async } from '@firebase/util';
+import ComProfileIMG from '../components/ProfileImage/profileIMG';
+
 
 export default function Profile({navigation}) {
-const defaultImage=require("../Image/emptyIcon.png");    
+ 
     const [image,setImage]=useState(null)
     const [userId,setUserID]=useState("")
     const [showMenu,setShowMenu]=useState(false);
@@ -23,31 +23,27 @@ const defaultImage=require("../Image/emptyIcon.png");
 
 
     const db= getFirestore(app);
-    const user=auth.currentUser;
-console.log(user);
-useEffect(()=>{
-     onAuthStateChanged(auth,(user)=>{
-        if(user){
-           console.log(user,"user Signed In");
-     
-        }else{
-            console.log("no user found");
-     
-            navigation.navigate("signIn")
-        }
-     })
-},[]);
-//get user profile image
-// (async function(){
-//   console.log(user.uid);
-//     const q =query(collection(db,"users"), where("uid","==",user.uid))
-//     const querySnapshot=await getDocs(q);
-//     querySnapshot.forEach((doc) => {
-//         // doc.data() is never undefined for query doc snapshots
-//         console.log(doc.id, " => ", doc.data());
-//       });
-  
-// })()
+    const getFirebaseData=()=>{
+        onAuthStateChanged(auth,async(user)=>{
+            if(user){
+                console.log(user,"user Signed In");
+                
+                const q =query(collection(db,"users"), where("uid","==",user.uid))
+                const querySnapshot=await getDocs(q);
+              querySnapshot.forEach((doc) => {
+   
+                  // doc.data() is never undefined for query doc snapshots
+                  setImage(doc.data().profileImage)
+                  console.log(doc.id, " => ", doc.data().profileImage);
+                });
+           }
+           return;
+        })
+   }
+   getFirebaseData()
+ 
+// get user profile image
+
 const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -95,10 +91,7 @@ const pickImage = async () => {
         <SafeAreaView style={{flex:1,justifyContent:"center"}}>
         <Headerv2 showMenu={showMenu} setShowMenu={setShowMenu} navigation={navigation}/>
             <View style={styles.container}>
-                {image?
-            <Image source={{uri:image}} style={{width:"150px",height:"100px",marginBottom:"5px",...Elevations[4]}}/>
-            : <Image source={{uri:require("../Image/emptyIcon.png")}} style={{width:"150px",height:"100px",marginBottom:"5px",...Elevations[4]}}/>
-        }
+              <ComProfileIMG getFirebaseData={getFirebaseData} image={image}/>
             <Button color="#2D3E48" mode="contained" style={{width:100,height:35,...Elevations[2]}} onPress={pickImage}><Text>Upload</Text></Button>
     <Text style={styles.txtInput}>Prefered Name: 
         <TextInput placeholder='User'
@@ -115,7 +108,7 @@ const pickImage = async () => {
  onChange={(e)=>setOtherEmail(e.target.value)} style={{paddingLeft:"10px",height:30, borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px"}}/>           
 </Text>
     </View>
- {showMenu?<Menu setShowMenu={setShowMenu} showMenu={showMenu} navigation={navigation }/>:<></>}      
+ {showMenu?<Menu setShowMenu={setShowMenu} showMenu={showMenu} navigation={navigation } image={image}/>:<></>}      
 <Button mode="contained" color="#2D3E48" 
 onPress={()=>handleUpdate(preferedName,addNumber,otherEmail)}
  style={{marginLeft:"60px",marginBottom:"30px",width:"200px",height:"40px",...Elevations[2]}}>

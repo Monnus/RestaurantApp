@@ -4,14 +4,17 @@ import ProfileBtn from '../profileBtn/Btn';
 import { Ionicons } from '@expo/vector-icons';
 import Elevations from 'react-native-elevation';
 
-export default function Menu({setShowMenu,showMenu,navigation}) {
-  // console.log(navigation.navigate("Profile"));
+export default function Menu({setShowMenu,showMenu,navigation,image}) {
+    const defaultImage=require("../../Image/emptyIcon.png");    
   return (
     <View style={styles.container}>
         <TouchableOpacity style={{ height:"30px",width:"10px"}} onPress={()=>setShowMenu(!showMenu)}>
       <Ionicons name="menu" size={54} color="black"  />
         </TouchableOpacity>
-      <Image style={styles.img} source={require("../../Image/emptyIcon.png")}/>
+        {image?
+        <Image source={{uri:image}} style={{...styles.img,...Elevations[4]}}/>
+        : <Image source={{uri:defaultImage}} style={{...styles.img,...Elevations[4]}}/>
+    }
       <View>
 
      <ProfileBtn name={"profile"} navigation={navigation}/>
