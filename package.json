@@ -12,6 +12,7 @@
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
     "expo": "~46.0.9",
+    "expo-image-picker": "~13.3.1",
     "expo-status-bar": "~1.4.0",
     "firebase": "^9.10.0",
     "nanoid": "^4.0.0",
@@ -26,8 +27,7 @@
     "react-native-screens": "~3.15.0",
     "react-native-svg-transformer": "^1.0.0",
     "react-native-view-slider": "^1.1.1",
-    "react-native-web": "~0.18.7",
-    "expo-image-picker": "~13.3.1"
+    "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

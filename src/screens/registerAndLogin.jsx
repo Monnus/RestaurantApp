@@ -14,10 +14,6 @@ const RegisterAndLogin=({navigation})=> {
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("");
     const auth=getAuth(app)
-
-  
-
-
 // ============================handle Submit===========================
     const handleSubmit=(refOrLog)=>{
         console.log(refOrLog,"hello",email,password);
@@ -27,10 +23,14 @@ const RegisterAndLogin=({navigation})=> {
     setemail("");
     setpassword("");
     setRefORLog(2);
-    })).catch((err)=>console.log(err.message))
+    })).catch((err)=>
+    console.log(err.message))
     }else if(refOrLog==2){
     signInWithEmailAndPassword(auth,email,password).then((res)=>{
     console.log("sign in with email");
+    setemail("");
+    setpassword("");
+    setRefORLog(1)
         navigation.navigate("Home");
     }).catch((err)=>console.log(err.message));
     }
@@ -41,7 +41,7 @@ const RegisterAndLogin=({navigation})=> {
             <> 
  <View style={{height:"400px",width:"100%",backgroundColor:"gray"}}> 
 
-Regestration page
+<Text>Regestration page</Text>
  </View>
     <View style={{margin:"50px "}}>
     <TextInput placeholder='Email' style={styles.inputBtn} onChange={(e)=>setemail(e.target.value)} value={email}/>
@@ -58,7 +58,8 @@ const loginInScreen=()=>{
 <>
 <View style={{height:"400px",width:"100%",backgroundColor:"skyblue"}}> 
 
-login Page
+<Text>
+    login Page</Text>
  </View>
         <View style={{margin:"50px"}}>
         <TextInput placeholder='Email' style={styles.inputBtn} onChange={(e)=>setemail(e.target.value)} value={email}/>
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
         marginBottom:10,
         paddingLeft:20,
         fontSize:20,
-        
+        outline:"",
         color:"gray"
     }
     
