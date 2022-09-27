@@ -36,8 +36,10 @@ export default function AddRestaurant({navigation}) {
     <SafeAreaView style={styles.container}>
      <Headerv2 showMenu={showMenu} setShowMenu={setShowMenu} navigation={navigation}/>
 <View style={styles.inputContainer}>
-
-
+<Text style={{width:"100%",height:200,backgroundColor:"green"}}></Text>
+<TextInput/>
+<TextInput/>
+<TextInput/>
 </View>
      
  {showMenu?<Menu setShowMenu={setShowMenu} showMenu={showMenu} navigation={navigation } image={image}/>:<></>}      
