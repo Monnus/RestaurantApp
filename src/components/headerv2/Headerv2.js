@@ -20,7 +20,7 @@ export default function Headerv2({showMenu,setShowMenu,navigation}) {
 <TouchableOpacity style={{ height:"30px",width:"10px"}} onPress={()=>setShowMenu(!showMenu)}>
       <Ionicons name="menu" size={54} color="black"  />
         </TouchableOpacity>
-  <Image source={{uri:require("../../Image/icon.png")}} style={{resizeMode:"contain",width:110,height:70,backgroundColor:"#F5F5F5"}}/>
+  <Image source={{uri:require("../../Image/icon.png")}} style={{resizeMode:"contain",width:110,height:70,backgroundColor:"#F5F5F5"}}onPress={()=>navigation.navigate("Home")}/>
   <MaterialCommunityIcons name="logout" size={50} color="black" onPress={()=>handleUserSignout()}/>
      </View>
   );

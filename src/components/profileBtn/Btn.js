@@ -10,7 +10,7 @@ const ProfileBtn=({name,navigation})=>{
   };
   const handleNavigate=()=>{
     console.log(paths[name],name);
-    navigation.navigate(`${paths[name]}`)
+    navigation.navigate(`${paths[name]}`);
   }
 
     return ( 

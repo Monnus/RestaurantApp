@@ -9,6 +9,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 export default function Header({navigation,setShowMenu,showMenu}) {
   const auth=getAuth()
   /// sign out current user
+  on
   const handleUserSignout=()=>{
     signOut(auth)
 
