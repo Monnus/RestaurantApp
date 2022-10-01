@@ -9,7 +9,9 @@ import Menu from '../components/manu/menue';
 import { Button } from 'react-native-paper';
 import Elevations from 'react-native-elevation';
 import ComProfileIMG from '../components/ProfileImage/profileIMG';
-
+import { experiement } from './Home';
+experiement();
+console.log(exp2);
 
 export default function Profile({navigation}) {
  
