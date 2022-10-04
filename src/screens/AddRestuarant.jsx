@@ -14,7 +14,15 @@ export default function AddRestaurant({navigation}) {
   const [imageRest,setImageRest]=useState(null);
   const db= getFirestore(app);
  const auth=getAuth(app);
-
+const [aboutRest,setAboutRest]=useState("");
+const [name,setName]=useState("");
+const [Province,setProvince]=useState("");
+const [City,setCity]=useState("");
+const [mssgToCMS,setmssgToCMS]=useState("")
+console.log(name);
+const handleSubmit=({aboutRest,name,Province,City,mssgToCMS})=>{
+console.log(aboutRest,name,Province,City,mssgToCMS);
+}
   const getFirebaseData=()=>{
       onAuthStateChanged(auth,async(user)=>{
           if(user){
@@ -55,27 +63,27 @@ export default function AddRestaurant({navigation}) {
     
 
 <View style={styles.inputContainer}>
-<TextInput placeholder='About your restaurant' multiline={true} textAlignVertical="top"
+<TextInput placeholder='About your restaurant' value={aboutRest}   onChange={(e)=>setAboutRest(e.target.value)} multiline={true} textAlignVertical="top"
    style={{paddingLeft:"10px",height:100,marginBottom:"20px",fontWeight:"400",fontSize:"20px", borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px",...Elevations[2]}}/>           
            {imageRest &&
         <Image source={{uri:imageRest}} style={{width:"150px",height:"100px",...Elevations[4]}}/>
            }
             <Button color="#2D3E48" mode="contained" style={{width:100,marginLeft:"20px",marginBottom:"5px",height:35,...Elevations[2]}} onPress={pickImage}>
               <Text>Upload</Text></Button>
-<TextInput placeholder='Name' 
+<TextInput placeholder='Name' value={name} onChange={(e)=>setName(e.target.value)} 
    style={{paddingLeft:"10px",height:40,marginBottom:"20px",fontWeight:"400",fontSize:"20px", borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px",...Elevations[2]}}/>           
-<TextInput placeholder='Province' 
+<TextInput placeholder='Province' value={Province} onChange={(e)=>setProvince(e.target.value)} 
    style={{paddingLeft:"10px",height:40,marginBottom:"20px",fontWeight:"400",fontSize:"20px", borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px",...Elevations[2]}}/>           
-<TextInput placeholder='City' multiline={true}
+<TextInput placeholder='City' multiline={true} value={City} onChange={(e)=>setCity(e.target.value)} 
    style={{paddingLeft:"10px",height:40,marginBottom:"20px",fontWeight:"400",fontSize:"20px", borderLeftWidth:"2px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px",...Elevations[2]}}/>           
 
-<TextInput placeholder='Message to CMS...' multiline={true} textAlignVertical="top"
+<TextInput placeholder='Message to CMS...' multiline={true} textAlignVertical="top" value={mssgToCMS} onChange={(e)=>setmssgToCMS(e.target. value)} 
    style={{paddingLeft:"10px",height:100, borderLeftWidth:"2px",fontWeight:"400",fontSize:"20px",borderRightWidth:"2px",borderTopWidth:"2px",borderBottomWidth:"2px"}}/>           
 
 
 </View>
 <Button mode="contained" color="#20A4DD" 
-
+onPress={()=>handleSubmit({aboutRest,name,Province,City,mssgToCMS})}
  style={{marginLeft:"60px",marginBottom:"30px",width:"200px",height:"40px",...Elevations[2]}}>
     <Text style={{fontSize:15,color:"white"}}>
     Send

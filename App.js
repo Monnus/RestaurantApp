@@ -28,7 +28,7 @@ useEffect(()=>{
 },[])
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName={"AddRestaurant"}>
+    <Stack.Navigator initialRouteName={"Home"}>
       <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
       <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
       <Stack.Screen name="signIn" component={RegisterAndLogin} options={{headerShown:false}}/>
