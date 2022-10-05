@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import React from 'react';
 import { View, Text,StyleSheet,Image } from 'react-native';
 
-export default function ListRes({data=[{img:require("../../Image/icon.png"),id:nanoid(),
+export default function ListRes({arrayOFres,data=[{img:require("../../Image/icon.png"),id:nanoid(),
 title:"burger Dish",description:`ullamco laboris nisi ut aliquip ex 
 ea commodo consequat. 
 Duis aute irure dolor in reprehenderit in voluptate velit 
@@ -10,19 +10,25 @@ esse cillum dolore eu fugiat nulla pariatur`}]}) {
   return (
     <View style={styles.container}>
 <Text style={styles.heading}>Restaurants near you:</Text>
-    {data.map(data=>{
-        return(
-         
-            <View style={styles.boxRes} key={data.id}>
-                <Image source={{uri:data.img}} style={{height:"100%",width:"200px"}}/>
-                <View style={{display:"flex"}}>
-                <Text style={{width:"auto",height:"auto" ,color:"white"}}>{data.title}</Text>
-                    <Text style={{width:"auto",height:"auto" ,color:"white"}}>{data.description}</Text>
-                </View>
-            </View>
 
-        )
-    })}
+            {arrayOFres.map(items=>{
+                console.log(items);
+                return(
+                    <View style={styles.boxRes} key={nanoid()}>
+        <Image source={{uri:items.RESTUARANT_IMG}} style={{height:"7rem",width:"7rem"}}/>
+        <View style={{display:"flex"}}>
+        <Text style={{width:"10rem",height:"auto" ,color:"white"}}>{items.NAME_OF_RES}</Text>
+        <Text style={{width:"",height:"auto" ,color:"white"}}>{items.DESCRIPTION}</Text>
+        <Text style={{color:"white"}}>OPEN:{items.OPEN}</Text>
+        </View>
+        </View>
+                )
+            })}
+               
+
+   
+        
+  
     </View>
   );
 }
@@ -47,8 +53,9 @@ const styles=StyleSheet.create({
             display:"flex",
             flexDirection:"row",
             backgroundColor:"#2D3E48",
-            height:200,
-            width:"100%",          
+            height:130,
+            width:"100%",  
+            marginBottom:"15px"        
         }
     
 })
