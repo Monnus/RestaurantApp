@@ -102,7 +102,6 @@ container:{
 },
 inputContainer:{
   display:"flex",
-  
 flex:5,
 
 }

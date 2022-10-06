@@ -6,14 +6,14 @@ const {width:WIDTH,height:HEIGHT}= Dimensions.get("window");
 const SliderImage=({arrayOFres})=>{
 const images=arrayOFres.map(img=>img.RESTUARANT_IMG)
 const [imgActive, setimgActive]=useState(0);
-onchange=(nativeEvent)=>{
-  if(nativeEvent){
-    const slide= Math.ceil(nativeEvent.contentOffset.x/nativeEvent.layotMeasurement.width);
-    if(slide!= imgActive){
-      setimgActive(slide)
-    }
-  }
-}
+// onchange=(nativeEvent)=>{
+//   if(nativeEvent){
+//     const slide= Math.ceil(nativeEvent.contentOffset.x/nativeEvent.layotMeasurement.width);
+//     if(slide!= imgActive){
+//       setimgActive(slide)
+//     }
+//   }
+// }
 return (
   <View style={styles.container}>
  <View style={styles.wrap}>

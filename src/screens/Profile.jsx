@@ -11,6 +11,8 @@ import Elevations from 'react-native-elevation';
 import ComProfileIMG from '../components/ProfileImage/profileIMG';
 
 
+
+
 export default function Profile({navigation}) {
  
     const [image,setImage]=useState(null)

@@ -30,8 +30,8 @@ const RegisterAndLogin=({navigation})=> {
     console.log("sign in with email");
     setemail("");
     setpassword("");
-    setRefORLog(1)
-        navigation.navigate("Home");
+    setRefORLog(1);
+    navigation.navigate("Home");
     }).catch((err)=>console.log(err.message));
     }
     };
