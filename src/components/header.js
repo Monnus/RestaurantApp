@@ -5,16 +5,18 @@ import { Ionicons } from '@expo/vector-icons';
 import "../components/slider/Slider";
 import { getAuth, signOut } from 'firebase/auth';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import Headerv2 from './headerv2/Headerv2';
 export default function Header({navigation,setShowMenu,showMenu}) {
   const auth=getAuth()
   /// sign out current user
-  
+  console.log(navigation);
   const handleUserSignout=()=>{
     signOut(auth)
-
         navigation.navigate("signIn")
-    }
+    };
+    const handleImage=()=>{
+      navigation.navigate("Home");
+  }
 return (
     <View style={styles.headerContainer}>
  
@@ -28,7 +30,10 @@ return (
       <TouchableOpacity style={{ height:"30px",width:"10px"}} onPress={()=>setShowMenu(!showMenu)}>
       <Ionicons name="menu" size={54} color="black"  />
         </TouchableOpacity>
-        <Image source={{uri:require("../Image/icon.png")}} style={{resizeMode:"contain",width:110,height:70,backgroundColor:"#F5F5F5"}}/>
+        <TouchableOpacity onPress={handleImage}>
+        <Image source={{uri:require("../Image/icon.png")}} 
+        style={{resizeMode:"contain",width:110,height:70,backgroundColor:"#F5F5F5"}} />
+        </TouchableOpacity>
   <MaterialCommunityIcons name="logout" size={50} color="black" onPress={()=>handleUserSignout()}/>
 
    </View>

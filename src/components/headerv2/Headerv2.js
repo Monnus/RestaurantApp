@@ -11,16 +11,22 @@ export default function Headerv2({showMenu,setShowMenu,navigation}) {
     const auth=getAuth(app)
     /// sign out current user
     const handleUserSignout=()=>{
-      signOut(auth)
-
-          navigation.navigate("signIn")
+        signOut(auth)
+        
+        navigation.navigate("signIn")
+    };
+    const handleImage=()=>{
+          navigation.navigate("Home");
       }
   return (
     <View style={styles.container}>
 <TouchableOpacity style={{ height:"30px",width:"10px"}} onPress={()=>setShowMenu(!showMenu)}>
       <Ionicons name="menu" size={54} color="black"  />
         </TouchableOpacity>
-  <Image source={{uri:require("../../Image/icon.png")}} style={{resizeMode:"contain",width:110,height:70,backgroundColor:"#F5F5F5"}}onPress={()=>navigation.navigate("Home")}/>
+        <TouchableOpacity onPress={handleImage}>
+  <Image source={{uri:require("../../Image/icon.png")}} 
+  style={{resizeMode:"contain",width:110,height:70,backgroundColor:"#F5F5F5"}} />
+  </TouchableOpacity>
   <MaterialCommunityIcons name="logout" size={50} color="black" onPress={()=>handleUserSignout()}/>
      </View>
   );
