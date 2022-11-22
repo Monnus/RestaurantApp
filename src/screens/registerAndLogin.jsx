@@ -2,7 +2,7 @@ import React, { useState ,useEffect} from 'react';
 
 import { View, StyleSheet, Text, SafeAreaView ,ImageBackground, TextInput} from 'react-native';
 import { Button } from 'react-native-paper';
-import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword, onAuthStateChanged,User} from "firebase/auth";
+import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
 import app from '../../firebaseConfig';
 
 
@@ -15,7 +15,8 @@ const RegisterAndLogin=({navigation})=> {
     const [password, setpassword] = useState("");
     const auth=getAuth(app)
     const image=[{uri:"https://th.bing.com/th/id/R.90bdf1fd18dffa951e4f60be8655170a?rik=JZeUNXZgiPC%2bjA&riu=http%3a%2f%2ffarm8.staticflickr.com%2f7050%2f6951325549_650167aa42.jpg&ehk=X%2fY8sQQxCEtVta%2fAOezQnNxRcZS0GCRJuA6N4ffoXMY%3d&risl=&pid=ImgRaw&r=0"},{uri:"https://cravedfw.files.wordpress.com/2012/08/fft1.jpg?w=998&h=664"}]
-// ============================handle Submit===========================
+
+    // ============================handle Submit===========================
     const handleSubmit=(refOrLog)=>{
         console.log(refOrLog,"hello",email,password);
     if(refOrLog==1){
@@ -36,6 +37,15 @@ const RegisterAndLogin=({navigation})=> {
     }).catch((err)=>console.log(err.message));
     }
     };
+    
+    useEffect(()=>{
+        onAuthStateChanged(auth,(user)=>{
+            if(user.email){
+                navigation.navigate("Home")
+            }
+        })
+
+    },[auth])
 
     const registerScreen=()=>{
 
