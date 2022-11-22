@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/Home';
-import Profile from './src/screens/Profile';
 import RegisterAndLogin from './src/screens/registerAndLogin';
-import AddRestaurant from './src/screens/AddRestuarant';
+// import HomeScreen from './src/screens/Home';
+// import Profile from './src/screens/Profile';
+// import AddRestaurant from './src/screens/AddRestuarant';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from './firebaseConfig';
 import { useEffect, useState } from 'react';
@@ -29,12 +29,7 @@ useEffect(()=>{
   return (
     <NavigationContainer>
     <Stack.Navigator initialRouteName={"signIn"}>
-      <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
-      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
       <Stack.Screen name="signIn" component={RegisterAndLogin} options={{headerShown:false}}/>
-      <Stack.Screen name="AddRestaurant" component={AddRestaurant} options={{headerShown:false}}/>
-
-
     </Stack.Navigator>
   </NavigationContainer>
   );
@@ -48,3 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+      {/* <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
+      <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
+      <Stack.Screen name="AddRestaurant" component={AddRestaurant} options={{headerShown:false}}/> */}
